@@ -1,42 +1,62 @@
 /* ==========================================================================
-   Smartech Coifas — base.css
-   Tokens de design (cores amostradas do logotipo), reset, tipografia,
-   temas claro/escuro e utilitários.
+   Smartech 3.0 — base.css
+   Design system industrial: 60% fundo escuro · 30% superfícies em aço/ardósia ·
+   10% destaques em ouro/latão (#facc15) e ciano técnico (#0284c7).
+   Tipografia: Plus Jakarta Sans (leitura) + JetBrains Mono (grandezas, tabular-nums).
+   "Zero-pill": metadados técnicos são texto limpo com separadores (·), sem cápsulas.
    ========================================================================== */
 
 :root {
-  /* — Marca: amarelo e âmbar do logotipo — */
-  --yellow-300: #fff27a;
-  --yellow-400: #fceb0d;           /* realce do "S" */
-  --yellow-500: #fad514;           /* amarelo principal */
-  --yellow-600: #f3b320;           /* âmbar do "S" */
-  --yellow-700: #9a6b00;           /* amarelo legível sobre fundo claro (AA) */
-  --gradient-brand: linear-gradient(135deg, var(--yellow-400) 0%, var(--yellow-500) 42%, var(--yellow-600) 100%);
+  /* — 60% · fundo industrial — */
+  --bg-0: #070b0e;
+  --bg-1: #0a0e11;
 
-  /* — Grafite (o texto do logotipo é o 600) — */
-  --graphite-950: #0c1012;
-  --graphite-900: #11171a;
-  --graphite-850: #161d20;
-  --graphite-800: #1c2427;
-  --graphite-700: #2a3438;
-  --graphite-600: #3a4247;
-  --graphite-500: #566066;
-  --graphite-400: #7c888e;
-  --graphite-300: #a5afb4;
-  --graphite-200: #cdd4d7;
-  --graphite-100: #e8ecee;
-  --graphite-50: #f4f6f7;
+  /* — 30% · superfícies estruturais (aço / ardósia) — */
+  --steel-950: #0c1216;
+  --steel-900: #10171c;
+  --steel-850: #141c22;
+  --steel-800: #19232a;
+  --steel-700: #223039;
+  --steel-600: #2e3e49;
+  --steel-500: #4a5d6a;
+  --steel-400: #6e8391;
+  --steel-300: #9aaebb;
+  --steel-200: #c6d3dc;
+  --steel-100: #e5edf2;
 
-  /* — Acentos técnicos (usados só onde têm significado) — */
-  --uv: #9a86ff;                   /* radiação UV-C */
-  --uv-soft: #c7bbff;
-  --ozone: #3ddcff;               /* ozonólise */
-  --ok: #3ddc97;                   /* ar tratado */
-  --danger: #ff6b6b;
+  /* — 10% · destaques — */
+  --gold: #facc15;
+  --gold-300: #fde047;
+  --gold-600: #eab308;
+  --gold-700: #a16207;
+  --cyan: #0284c7;
+  --cyan-400: #38bdf8;
+  --cyan-300: #7dd3fc;
 
-  /* — Tipografia — */
-  --font-display: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* — cores com significado técnico (uso pontual) — */
+  --uv: #a855f7;
+  --uv-300: #d8b4fe;
+  --ozone: #22d3ee;
+  --ok: #34d399;
+  --danger: #f87171;
+
+  --gradient-gold: linear-gradient(135deg, #fde047 0%, #facc15 45%, #eab308 100%);
+  --gradient-steel: linear-gradient(160deg, var(--steel-850) 0%, var(--steel-950) 100%);
+  --brushed: repeating-linear-gradient(90deg, rgba(198, 211, 220, 0.025) 0 1px, transparent 1px 4px);
+
+  /* — texto e linhas — */
+  --text: #e8eef2;
+  --text-muted: #a3b3be;
+  --text-faint: #7f929f;
+  --border: rgba(198, 211, 220, 0.09);
+  --border-strong: rgba(198, 211, 220, 0.2);
+  --surface: var(--steel-900);
+  --surface-2: var(--steel-850);
+  --accent-text: var(--gold);
+
+  /* — tipografia — */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
   --step-1: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
@@ -45,56 +65,22 @@
   --step-4: clamp(2.125rem, 1.5rem + 2.8vw, 3.5rem);
   --step-5: clamp(2.5rem, 1.5rem + 4.4vw, 4.75rem);
 
-  /* — Layout — */
+  /* — layout — */
   --gutter: clamp(1rem, 0.4rem + 2.8vw, 2rem);
-  --container: 1200px;
+  --container: 1240px;
   --header-h: 76px;
   --section-y: clamp(4.5rem, 3rem + 6vw, 8rem);
-  --slash: clamp(22px, 4.2vw, 64px);   /* altura do corte diagonal (herdado do "S") */
-  --radius-s: 10px;
-  --radius-m: 16px;
-  --radius-l: 24px;
+  --slash: clamp(22px, 4.2vw, 64px);
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 18px;
 
-  /* — Movimento — */
+  /* — movimento — */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
-}
 
-/* ---- Temas (aplicados por seção) ---- */
-:root,
-.theme-dark {
   color-scheme: dark;
-  --bg: var(--graphite-950);
-  --bg-2: var(--graphite-900);
-  --surface: var(--graphite-850);
-  --surface-2: var(--graphite-800);
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --text: #eef2f3;
-  --text-muted: #a5afb4;
-  --text-faint: #8a959b;
-  --accent-text: var(--yellow-500);
-  --shadow-card: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
 }
-
-.theme-light {
-  color-scheme: light;
-  --bg: var(--graphite-50);
-  --bg-2: #ffffff;
-  --surface: #ffffff;
-  --surface-2: var(--graphite-100);
-  --border: rgba(17, 23, 26, 0.1);
-  --border-strong: rgba(17, 23, 26, 0.24);
-  --text: var(--graphite-900);
-  --text-muted: #46535a;
-  --text-faint: #66737a;
-  --accent-text: var(--yellow-700);
-  --shadow-card: 0 24px 50px -28px rgba(17, 23, 26, 0.35);
-}
-
-/* Cada escopo de tema reaplica a cor do texto (cartões escuros dentro de seções claras e vice-versa) */
-.theme-dark,
-.theme-light { color: var(--text); }
 
 /* ---- Reset enxuto ---- */
 *,
@@ -111,50 +97,51 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--graphite-950);
+  background: var(--bg-0);
   color: var(--text);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-size: var(--step-0);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: clip;   /* evita rolagem horizontal sem quebrar position: sticky */
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
-
 img, svg, video, canvas { display: block; max-width: 100%; }
 img { height: auto; }
-
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 [hidden] { display: none !important; }
 
-::selection { background: var(--yellow-500); color: var(--graphite-950); }
+::selection { background: var(--gold); color: var(--bg-0); }
 
 :focus-visible {
-  outline: 3px solid var(--yellow-500);
+  outline: 2px solid var(--cyan-400);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
-.theme-light :focus-visible { outline-color: var(--graphite-900); }
 
-/* Barra de rolagem discreta */
-* { scrollbar-width: thin; scrollbar-color: var(--graphite-600) var(--graphite-950); }
+* { scrollbar-width: thin; scrollbar-color: var(--steel-600) var(--bg-0); }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--graphite-950); }
-::-webkit-scrollbar-thumb { background: var(--graphite-600); border-radius: 10px; border: 2px solid var(--graphite-950); }
-::-webkit-scrollbar-thumb:hover { background: var(--yellow-600); }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--steel-600); border-radius: 10px; border: 2px solid var(--bg-0); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-600); }
+
+@supports not (overflow: clip) {
+  body { overflow-x: hidden; }
+  .section:not(.process) { overflow-x: hidden; }
+}
 
 /* ---- Tipografia ---- */
 h1, h2, h3, h4 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 800;
   line-height: 1.08;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 h2 { font-size: var(--step-4); }
@@ -163,45 +150,49 @@ p { text-wrap: pretty; }
 
 .text-brand {
   font-style: normal;
-  background: var(--gradient-brand);
+  background: var(--gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: var(--yellow-500);
-}
-.theme-light .text-brand {
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  color: var(--graphite-900);
-  box-shadow: inset 0 -0.32em 0 var(--yellow-500);   /* marca-texto amarelo: legível no fundo claro */
+  color: var(--gold);
 }
 
-/* Eyebrow: etiqueta com o "corte" do logotipo */
+/* Grandezas e numerais: monoespaçada com algarismos tabulares */
+.mono, .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* Metadado técnico "zero-pill": texto limpo, separado por · (sem caixa, sem borda) */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+.meta strong { color: var(--text-muted); font-weight: 600; }
+.meta--gold { color: var(--gold); }
+.meta--cyan { color: var(--cyan-400); }
+
+/* Eyebrow: rótulo de seção com o "corte" do logotipo */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-display);
-  font-size: var(--step--1);
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--accent-text);
+  color: var(--gold);
 }
 .eyebrow::before {
   content: "";
   width: 34px;
-  height: 8px;
-  background: var(--gradient-brand);
+  height: 7px;
+  background: var(--gradient-gold);
   transform: skewX(-32deg);
-  border-radius: 2px;
+  border-radius: 1px;
   flex: none;
-}
-
-/* Navegadores sem suporte a overflow: clip (Safari < 16) */
-@supports not (overflow: clip) {
-  body { overflow-x: hidden; }
-  .section:not(.process) { overflow-x: hidden; }
 }
 
 /* ---- Utilitários ---- */
@@ -220,22 +211,20 @@ p { text-wrap: pretty; }
 .skip-link {
   position: fixed;
   left: 1rem; top: -4rem;
-  z-index: 200;
+  z-index: 400;
   padding: 0.75rem 1.25rem;
-  background: var(--yellow-500);
-  color: var(--graphite-950);
+  background: var(--gold);
+  color: var(--bg-0);
   font-weight: 700;
   border-radius: var(--radius-s);
   transition: top 0.2s var(--ease-out);
 }
 .skip-link:focus { top: 1rem; }
 
-/* Bloqueia a rolagem da página (menu / modais abertos) */
 html.is-locked { overflow: hidden; }
 
 /* ---- Estados iniciais das animações de rolagem ----
-   O conteúdo só começa oculto se (a) o JS rodou, (b) o usuário não pediu
-   menos movimento e (c) o GSAP carregou (senão .no-gsap mostra tudo). */
+   Só existem com JS ativo, sem "reduzir movimento" e com o GSAP carregado (.no-gsap mostra tudo). */
 .has-motion:not(.no-gsap) [data-reveal] { opacity: 0; transform: translate3d(0, 28px, 0); }
 .has-motion:not(.no-gsap) [data-reveal="left"] { transform: translate3d(-36px, 0, 0); }
 .has-motion:not(.no-gsap) [data-reveal="right"] { transform: translate3d(36px, 0, 0); }
@@ -246,12 +235,9 @@ html.is-locked { overflow: hidden; }
 .has-motion:not(.no-gsap) [data-hero] { opacity: 0; transform: translate3d(0, 24px, 0); }
 .has-motion:not(.no-gsap) [data-hero="fade"] { transform: none; }
 
-/* Divisão de palavras (títulos) */
+/* Divisão de palavras (títulos). Não usar transform aqui: o GSAP leria o translate do CSS como px. */
 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.12em 0.04em 0.16em; margin: -0.12em -0.04em -0.16em; }
-.w > span { display: inline-block; padding-bottom: 0.16em; margin-bottom: -0.16em; will-change: transform; }   /* o degradê cobre os descendentes (g, p, q) */
-/* Títulos divididos em palavras: ocultos até o JS terminar de dividir (evita piscar) e, depois,
-   as palavras ficam invisíveis até o GSAP posicioná-las atrás da máscara (.w tem overflow:hidden).
-   Não usar transform aqui: o GSAP leria o translate do CSS como pixels e a animação não zeraria. */
+.w > span { display: inline-block; padding-bottom: 0.16em; margin-bottom: -0.16em; will-change: transform; }
 .has-motion:not(.no-gsap) [data-split]:not(.is-split) { visibility: hidden; }
 .has-motion:not(.no-gsap) [data-split] .w > span { opacity: 0; }
 

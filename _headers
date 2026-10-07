@@ -4,6 +4,9 @@
 #
 # Teste antes de publicar: abra o site e confira o console do navegador. Se aparecer
 # "Refused to ... because it violates the Content-Security-Policy", ajuste a política abaixo.
+#
+# Smartech 3.0: connect-src libera o Worker do consultor (*.workers.dev — troque se usar domínio próprio);
+# style-src 'unsafe-inline' é necessário para as sugestões do Google Search exibidas no chat (exigência do grounding).
 
 /*
   X-Content-Type-Options: nosniff
@@ -11,7 +14,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' blob:; connect-src 'self' https://*.workers.dev; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate

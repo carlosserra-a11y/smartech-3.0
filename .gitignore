@@ -3,6 +3,12 @@
 smartech-site.zip
 _backup/
 
+# Worker do consultor (configuração e segredos locais)
+worker/wrangler.toml
+.wrangler/
+.dev.vars
+.env
+
 # Sistema e editores
 .DS_Store
 Thumbs.db

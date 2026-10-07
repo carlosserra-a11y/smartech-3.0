@@ -1,0 +1,17 @@
+# Smartech 3.0 — Worker do consultor técnico
+# 1) Copie este arquivo para wrangler.toml
+# 2) npx wrangler secret put GEMINI_API_KEY      (cole a chave do Google AI Studio quando pedir)
+# 3) npx wrangler deploy
+# 4) Coloque a URL publicada em js/config.js → consultorApi
+name = "smartech-consultor"
+main = "consultor-worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Origens que podem chamar o consultor (sem barra no final, separadas por vírgula)
+ALLOWED_ORIGINS = "https://carlosserra-a11y.github.io"
+GEMINI_MODEL = "gemini-3.8-flash"
+
+# Opcional: limite de requisições por IP usando o recurso de rate limiting do Cloudflare.
+# Consulte a documentação atual do Cloudflare para o formato do binding na sua conta;
+# sem ele, o Worker aplica um limite simples em memória (8 perguntas/min por IP).

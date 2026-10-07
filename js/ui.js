@@ -1,4 +1,4 @@
-/* Smartech Coifas — ui.js
+/* Smartech 3.0 — ui.js
  * Interações da página (sem dependências): header, menu mobile, scrollspy, barra de progresso,
  * comparador antes/depois, filtros e fichas dos projetos, diálogos e formulário de orçamento.
  */
@@ -8,7 +8,9 @@
   var doc = document;
   var root = doc.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var WA = (doc.body.dataset.wa || '5548991809488').replace(/\D/g, '');
+  var CFG = window.SMARTECH_CONFIG || {};
+  var WA = String(CFG.whatsapp || doc.body.dataset.wa || '5548991809488').replace(/\D/g, '');
+  var EMAIL = CFG.email || 'contato@smartechcoifas.com';
 
   function $(sel, ctx) { return (ctx || doc).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); }
@@ -114,7 +116,7 @@
       else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
-    window.matchMedia('(min-width: 1081px)').addEventListener('change', function (mq) {
+    window.matchMedia('(min-width: 1181px)').addEventListener('change', function (mq) {
       if (mq.matches && state.menuOpen) setOpen(false, false);
     });
   }
@@ -442,7 +444,7 @@
       mail.addEventListener('click', function () {
         if (!validate()) { say('Confira os campos destacados.', true); return; }
         var body = buildMessage().replace(/\*/g, '');
-        window.location.href = 'mailto:contato@smartechcoifas.com?subject=' +
+        window.location.href = 'mailto:' + EMAIL + '?subject=' +
           encodeURIComponent('Solicitação de orçamento — ' + clean(f.name.value, 60)) +
           '&body=' + encodeURIComponent(body);
         say('Abrindo o seu aplicativo de e-mail…', false);
